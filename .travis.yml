@@ -1,0 +1,11 @@
+language: generic
+env: CXX=g++-5
+addons:
+    apt:
+        sources:
+            - ubuntu-toolchain-r-test
+        packages:
+            - libsfml-dev
+            - g++-5
+script:
+- make

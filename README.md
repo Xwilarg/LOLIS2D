@@ -3,7 +3,7 @@ LOLIS2D is a library based over the SFML
 
 | Linux          | Windows     |
 | -------------- | ------------ |
-| *** | *** |
+| [![Build Status](https://travis-ci.org/Xwilarg/LOLIS2D.svg?branch=master)](https://travis-ci.org/Xwilarg/LOLIS2D) | [![Build status](https://ci.appveyor.com/api/projects/status/fpw9r6e71qwrng4p/branch/master?svg=true)](https://ci.appveyor.com/project/Xwilarg/lolis2d/branch/master) |
 <br/>
 
 ### So why does this exist ?

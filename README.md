@@ -12,9 +12,9 @@ The goals of LOLIS2D are the following:
   - Stay light
   - Work on both Linux and Windows
   
-### What does LOLIS2D means ?
+### What does LOLIS2D stands for ?
 Light Operational Library for Impersonal Service<br/>
 ...Don't think too much about it
 
-### So how does I use it ?
+### How do I use it ?
 You can't for now, just wait until I made something worth showing

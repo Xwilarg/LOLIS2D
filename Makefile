@@ -4,7 +4,8 @@ CXXFLAGS = -Wall -Wextra -std=c++14
 
 CPPFLAGS = -ILOLIS2D/inc
 
-SRC = 	LOLIS2D/main.cpp
+SRC = 	LOLIS2D/main.cpp \
+		LOLIS2D/src/GameManager.cpp
 
 NAME = lolis.out
 

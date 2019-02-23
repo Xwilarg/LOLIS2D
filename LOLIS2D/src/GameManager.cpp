@@ -17,7 +17,7 @@ namespace LOLIS2D
 		_scenes.push_back(std::move(scene));
 	}
 
-	bool GameManager::LoadScene(const std::string &name) noexcept
+	void GameManager::LoadScene(const std::string &name) noexcept
 	{
 		_currScene = &*std::find_if(_scenes.begin(), _scenes.end(),
 			[&name](const Scene &scene) { return (scene.CompareName(name)); });

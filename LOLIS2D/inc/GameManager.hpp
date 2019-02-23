@@ -11,7 +11,7 @@ namespace LOLIS2D
 		GameManager(int xSize, int ySize, const std::string &title) noexcept;
 		void AddScene(std::string &&name) noexcept;
 		void AddScene(Scene &&scene) noexcept;
-		bool LoadScene(const std::string &name) noexcept;
+		void LoadScene(const std::string &name) noexcept;
 		void Start();
 
 	private:

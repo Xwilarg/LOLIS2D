@@ -18,9 +18,8 @@ RM = rm -f
 
 all: $(NAME)
 
-$(NAME):
-	$(CXX) -c -o $(OBJ) $(CXXFLAGS) $(CPPFLAGS) $(LDLIBS)
-	ar rcs $(NAME) $(OBJ)
+$(NAME): $(OBJ)
+	ar rc $(NAME) $(OBJ)
 
 clean:
 	$(RM) $(OBJ)

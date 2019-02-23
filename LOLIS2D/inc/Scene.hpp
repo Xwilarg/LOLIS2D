@@ -11,7 +11,7 @@ namespace LOLIS2D
 	public:
 		Scene(std::string &&name) noexcept;
 		void Update();
-		bool CompareName(const std::string &name) const noexcept;
+		[[nodiscard]] bool CompareName(const std::string &name) const noexcept;
 
 	private:
 		std::vector<GameObject> _allGameObjects;

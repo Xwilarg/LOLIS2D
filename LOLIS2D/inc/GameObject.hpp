@@ -10,7 +10,7 @@ namespace LOLIS2D
 	public:
 		GameObject(std::string &&name, Transform &&transform = Transform()) noexcept;
 		virtual ~GameObject() noexcept = default;
-		bool operator==(const GameObject &go) const noexcept;
+		[[nodiscard]] bool operator==(const GameObject &go) const noexcept;
 		void Update();
 
 	private:

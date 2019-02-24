@@ -24,14 +24,16 @@ namespace LOLIS2D
 		void AddRenderer(Args&&... params)
 		{
 			_renderer = std::make_unique<T>(std::forward<Args>(params)...);
+			_renderer->SetPosition(_transform.GetPosition());
 		}
 		template<class T>
 		void AddScript()
 		{
-			_toAdd.push_back(std::make_unique<T>(*this));
+			_toAdd.push_back(std::make_unique<T>(this));
 		}
 
 	private:
+		void UpdateScripts() noexcept;
 		std::string _name;
 		Transform _transform;
 		std::unique_ptr<IRenderer> _renderer;

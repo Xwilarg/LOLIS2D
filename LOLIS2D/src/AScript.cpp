@@ -2,9 +2,14 @@
 
 namespace LOLIS2D
 {
-	AScript::AScript(GameObject &gameObject) noexcept
+	AScript::AScript(GameObject *gameObject) noexcept
 		: _gameObject(gameObject)
 	{ }
+
+	void AScript::UpdateGameObject(GameObject *gameObject) noexcept
+	{
+		_gameObject = gameObject;
+	}
 
 	void AScript::Start()
 	{ }

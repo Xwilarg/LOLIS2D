@@ -48,7 +48,7 @@ namespace LOLIS2D
 					Input::ReleaseKey(event.key.code);
 			}
 			_window.clear();
-			Time::deltaTime = std::chrono::duration_cast<std::chrono::duration<double>>(std::chrono::high_resolution_clock::now() - _refDelta).count() * 1000.0;
+			Time::deltaTime = std::chrono::duration_cast<std::chrono::duration<double>>(std::chrono::high_resolution_clock::now() - _refDelta).count();
 			_refDelta = std::chrono::high_resolution_clock::now();
 			_currScene->Update(_window);
 			_window.display();

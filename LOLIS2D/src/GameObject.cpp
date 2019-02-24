@@ -12,27 +12,35 @@ namespace LOLIS2D
 		: _name(go._name), _transform(go._transform), _renderer((go._renderer != nullptr) ? (go._renderer->Clone()) : (nullptr)),
 		_scripts(), _toAdd(), _id(id++)
 	{
+		_scripts.clear();
+		_toAdd.clear();
 		for (const std::unique_ptr<AScript> &script : go._scripts)
 			_scripts.push_back(script->Clone());
 		for (const std::unique_ptr<AScript> &script : go._toAdd)
 			_toAdd.push_back(script->Clone());
+		UpdateScripts();
 	}
 
 	GameObject::GameObject(GameObject &&go) noexcept
 		: _name(std::move(go._name)), _transform(std::move(go._transform)), _renderer(std::move(go._renderer)),
 		_scripts(std::move(go._scripts)), _toAdd(std::move(go._toAdd)), _id(std::move(go._id))
-	{ }
+	{
+		UpdateScripts();
+	}
 
 	GameObject &GameObject::operator=(const GameObject &go) noexcept
 	{
 		_name = go._name;
 		_transform = go._transform;
+		_scripts.clear();
+		_toAdd.clear();
 		for (const std::unique_ptr<AScript> &script : go._scripts)
 			_scripts.push_back(script->Clone());
 		for (const std::unique_ptr<AScript> &script : go._toAdd)
 			_toAdd.push_back(script->Clone());
 		_renderer = (go._renderer != nullptr) ? (go._renderer->Clone()) : (nullptr);
 		_id = id++;
+		UpdateScripts();
 		return (*this);
 	}
 
@@ -44,6 +52,7 @@ namespace LOLIS2D
 		_scripts = std::move(go._scripts);
 		_toAdd = std::move(go._toAdd);
 		_id = std::move(go._id);
+		UpdateScripts();
 		return (*this);
 	}
 
@@ -71,6 +80,14 @@ namespace LOLIS2D
 		_transform.Move(std::move(pos));
 		if (_renderer != nullptr)
 			_renderer->SetPosition(_transform.GetPosition());
+	}
+
+	void GameObject::UpdateScripts() noexcept
+	{
+		for (std::unique_ptr<AScript> &script : _scripts)
+			script->UpdateGameObject(this);
+		for (std::unique_ptr<AScript> &script : _toAdd)
+			script->UpdateGameObject(this);
 	}
 
 	int GameObject::id = 0;

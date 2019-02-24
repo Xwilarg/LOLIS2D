@@ -1,6 +1,7 @@
 #pragma once
 
 # include <SFML/Graphics/RenderWindow.hpp>
+# include <chrono>
 # include "Scene.hpp"
 
 namespace LOLIS2D
@@ -18,6 +19,7 @@ namespace LOLIS2D
 	private:
 		sf::RenderWindow _window;
 		std::vector<Scene> _scenes;
+		std::chrono::high_resolution_clock::time_point _refDelta;
 		Scene *_currScene;
 	};
 }

@@ -2,5 +2,5 @@
 
 namespace LOLIS2D
 {
-	double Time::deltaTime = 0.0;
+	float Time::deltaTime = 0.f;
 }

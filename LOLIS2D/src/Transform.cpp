@@ -7,8 +7,13 @@ namespace LOLIS2D
 		: _position(sf::Vector2f(0.f, 0.f)), _rotation(0.f)
 	{ }
 
-	void Transform::Move(sf::Vector2f &&pos) noexcept
+	void Transform::Move(const sf::Vector2f &pos) noexcept
 	{
-		_position = std::move(pos);
+		_position += pos;
+	}
+
+	const sf::Vector2f &Transform::GetPosition() const noexcept
+	{
+		return (_position);
 	}
 }

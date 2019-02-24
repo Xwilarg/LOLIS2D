@@ -15,7 +15,7 @@ namespace LOLIS2D
 		win.draw(_rect);
 	}
 
-	void ColorRenderer::Move(const sf::Vector2f &pos) noexcept
+	void ColorRenderer::SetPosition(const sf::Vector2f &pos) noexcept
 	{
 		_rect.setPosition(pos);
 	}

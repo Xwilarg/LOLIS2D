@@ -18,6 +18,8 @@ namespace LOLIS2D
 		AScript(GameObject &gameObject) noexcept;
 		virtual ~AScript() noexcept = default;
 		virtual std::unique_ptr<AScript> Clone() const noexcept = 0;
+		virtual void Start();
+		virtual void Update();
 
 	protected:
 		GameObject &_gameObject;

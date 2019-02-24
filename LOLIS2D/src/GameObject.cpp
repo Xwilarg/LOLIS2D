@@ -10,7 +10,7 @@ namespace LOLIS2D
 
 	GameObject::GameObject(const GameObject &go) noexcept
 		: _name(go._name), _transform(go._transform), _renderer((go._renderer != nullptr) ? (go._renderer->Clone()) : (nullptr)),
-		_scripts(), _toAdd(), _id(go._id)
+		_scripts(), _toAdd(), _id(id++)
 	{
 		for (const std::unique_ptr<AScript> &script : go._scripts)
 			_scripts.push_back(script->Clone());
@@ -32,7 +32,7 @@ namespace LOLIS2D
 		for (const std::unique_ptr<AScript> &script : go._toAdd)
 			_toAdd.push_back(script->Clone());
 		_renderer = (go._renderer != nullptr) ? (go._renderer->Clone()) : (nullptr);
-		_id = go._id;
+		_id = id++;
 		return (*this);
 	}
 
@@ -60,15 +60,17 @@ namespace LOLIS2D
 			std::move(_toAdd.begin(), _toAdd.end(), std::back_inserter(_scripts));
 			_toAdd.clear();
 		}
+		for (std::unique_ptr<AScript> &script : _scripts)
+			script->Update();
 		if (_renderer != nullptr)
 			_renderer->Draw(win);
 	}
 
 	void GameObject::Move(sf::Vector2f &&pos) noexcept
 	{
-		if (_renderer != nullptr)
-			_renderer->Move(pos);
 		_transform.Move(std::move(pos));
+		if (_renderer != nullptr)
+			_renderer->SetPosition(_transform.GetPosition());
 	}
 
 	int GameObject::id = 0;

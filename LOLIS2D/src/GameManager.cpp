@@ -2,6 +2,7 @@
 #include "GameManager.hpp"
 #include "AScript.hpp"
 #include "Time.hpp"
+#include "Input.hpp"
 
 namespace LOLIS2D
 {
@@ -41,6 +42,10 @@ namespace LOLIS2D
 			{
 				if (event.type == sf::Event::Closed)
 					_window.close();
+				else if (event.type == sf::Event::KeyPressed)
+					Input::PressKey(event.key.code);
+				else if (event.type == sf::Event::KeyReleased)
+					Input::ReleaseKey(event.key.code);
 			}
 			_window.clear();
 			Time::deltaTime = std::chrono::duration_cast<std::chrono::duration<double>>(std::chrono::high_resolution_clock::now() - _refDelta).count() * 1000.0;

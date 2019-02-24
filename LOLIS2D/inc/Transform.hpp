@@ -8,7 +8,8 @@ namespace LOLIS2D
 	{
 	public:
 		Transform() noexcept;
-		void Move(sf::Vector2f &&pos) noexcept;
+		void Move(const sf::Vector2f &pos) noexcept;
+		const sf::Vector2f &GetPosition() const noexcept;
 
 	private:
 		sf::Vector2f _position;

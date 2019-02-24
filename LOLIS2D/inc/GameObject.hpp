@@ -16,15 +16,14 @@ namespace LOLIS2D
 		GameObject &operator=(const GameObject &go) noexcept;
 		GameObject &operator=(GameObject &&go) noexcept;
 		[[nodiscard]] bool operator==(const GameObject &go) const noexcept;
-		template <class T>
-		void AddRenderer()
+		void Update(sf::RenderWindow &win);
+		template <class T, typename... Args>
+		void AddRenderer(Args&&... params)
 		{
-			_renderer = std::make_unique<T>();
+			_renderer = std::make_unique<T>(std::forward<Args>(params)...);
 		}
 
 	private:
-		friend class Scene; // Scene is friend so only him can access Update
-		void Update();
 		std::string _name;
 		Transform _transform;
 		std::unique_ptr<IRenderer> _renderer;

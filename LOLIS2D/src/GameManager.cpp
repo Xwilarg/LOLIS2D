@@ -35,7 +35,7 @@ namespace LOLIS2D
 			}
 			_window.clear();
 			if (_currScene != nullptr)
-				_currScene->Update();
+				_currScene->Update(_window);
 			_window.display();
 		}
 	}

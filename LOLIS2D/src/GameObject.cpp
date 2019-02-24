@@ -37,9 +37,10 @@ namespace LOLIS2D
 		return (_id == go._id);
 	}
 
-	void GameObject::Update()
+	void GameObject::Update(sf::RenderWindow &win)
 	{
-
+		if (_renderer != nullptr)
+			_renderer->Draw(win);
 	}
 
 	int GameObject::id = 0;

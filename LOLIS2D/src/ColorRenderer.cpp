@@ -4,7 +4,7 @@
 namespace LOLIS2D
 {
 	ColorRenderer::ColorRenderer(const sf::Color &color, const sf::Vector2f &pos) noexcept
-		: _rect(sf::Vector2f(1.f, 1.f))
+		: _rect(sf::Vector2f(10.f, 10.f))
 	{
 		_rect.setPosition(pos);
 		_rect.setFillColor(color);

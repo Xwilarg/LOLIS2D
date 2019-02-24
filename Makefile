@@ -8,7 +8,7 @@ SRC = 	LOLIS2D/src/GameManager.cpp \
 		LOLIS2D/src/Scene.cpp \
 		LOLIS2D/src/GameObject.cpp \
 		LOLIS2D/src/Transform.cpp \
-		LOLIS2D/src/ColorRenderer.cpp
+		LOLIS2D/src/ColorRenderer.cpp \
 		LOLIS2D/src/AScript.cpp
 
 OBJ = $(SRC:.cpp=.o)

@@ -9,6 +9,7 @@ namespace LOLIS2D
 	{
 	public:
 		GameManager(int xSize, int ySize, const std::string &title) noexcept;
+		GameManager(const GameManager& gm) = delete; // Game Manager have no reason of being copied
 		void AddScene(std::string &&name) noexcept;
 		void AddScene(Scene &&scene) noexcept;
 		void LoadScene(const std::string &name) noexcept;

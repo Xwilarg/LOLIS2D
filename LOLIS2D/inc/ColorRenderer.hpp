@@ -12,7 +12,7 @@ namespace LOLIS2D
 		ColorRenderer(const sf::Color &color, const sf::Vector2f &pos) noexcept;
 		void Draw(sf::RenderWindow &win) const noexcept override;
 		void Move(const sf::Vector2f &pos) noexcept override;
-		std::unique_ptr<IRenderer> Clone() noexcept;
+		std::unique_ptr<IRenderer> Clone() const noexcept;
 
 	private:
 		sf::RectangleShape _rect;

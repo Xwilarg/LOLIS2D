@@ -20,7 +20,7 @@ namespace LOLIS2D
 		_rect.setPosition(pos);
 	}
 
-	std::unique_ptr<IRenderer> ColorRenderer::Clone() noexcept
+	std::unique_ptr<IRenderer> ColorRenderer::Clone() const noexcept
 	{
 		return (std::make_unique<ColorRenderer>(*this));
 	}

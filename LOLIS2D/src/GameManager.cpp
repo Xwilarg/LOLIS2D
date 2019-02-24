@@ -1,5 +1,6 @@
 #include <SFML/Window/Event.hpp>
 #include "GameManager.hpp"
+#include "AScript.hpp"
 
 namespace LOLIS2D
 {

@@ -28,7 +28,7 @@ namespace LOLIS2D
 		template<class T>
 		void AddScript()
 		{
-			_toAdd.emplace_back<T>(*this);
+			_toAdd.push_back(std::make_unique<T>(*this));
 		}
 
 	private:

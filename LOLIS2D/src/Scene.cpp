@@ -1,5 +1,6 @@
 #include <algorithm>
 #include "Scene.hpp"
+#include "AScript.hpp"
 
 namespace LOLIS2D
 {

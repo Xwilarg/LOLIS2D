@@ -19,5 +19,5 @@ The goals of LOLIS2D are the following:
   - Work on both Linux and Windows
   
 ### What does LOLIS2D stands for ?
-Light Operational Library for Impersonal Service<br/>
+Light Operational Library for Impersonal Services<br/>
 ...Don't think too much about it

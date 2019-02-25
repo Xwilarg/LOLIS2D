@@ -1,5 +1,5 @@
 #include "AScript.hpp"
-#include "GameObject.hpp"
+#include "DynamicGameObject.hpp"
 
 namespace LOLIS2D
 {
@@ -78,6 +78,22 @@ namespace LOLIS2D
 	void GameObject::Move(sf::Vector2f &&pos) noexcept
 	{
 		_transform.Move(std::move(pos));
+		InternalMove();
+	}
+
+	void GameObject::Move(const sf::Vector2f &pos) noexcept
+	{
+		_transform.Move(pos);
+		InternalMove();
+	}
+
+	DynamicGameObject *GameObject::CastToDynamic() noexcept
+	{
+		return (dynamic_cast<DynamicGameObject *>(this));
+	}
+
+	void GameObject::InternalMove() noexcept
+	{
 		if (_renderer != nullptr)
 			_renderer->SetPosition(_transform.GetPosition());
 	}

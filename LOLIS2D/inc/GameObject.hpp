@@ -7,6 +7,7 @@
 namespace LOLIS2D
 {
 	class AScript;
+	class DynamicGameObject;
 
 	class GameObject
 	{
@@ -18,21 +19,24 @@ namespace LOLIS2D
 		GameObject &operator=(const GameObject &go) noexcept;
 		GameObject &operator=(GameObject &&go) noexcept;
 		[[nodiscard]] bool operator==(const GameObject &go) const noexcept;
-		void Update(sf::RenderWindow &win);
+		virtual void Update(sf::RenderWindow &win);
 		void Move(sf::Vector2f &&pos) noexcept;
+		void Move(const sf::Vector2f &pos) noexcept;
+		DynamicGameObject *CastToDynamic() noexcept;
 		template<class T, typename... Args>
-		void AddRenderer(Args&&... params)
+		void AddRenderer(Args&&... params) noexcept
 		{
 			_renderer = std::make_unique<T>(std::forward<Args>(params)...);
 			_renderer->SetPosition(_transform.GetPosition());
 		}
 		template<class T>
-		void AddScript()
+		void AddScript() noexcept
 		{
 			_toAdd.push_back(std::make_unique<T>(this));
 		}
 
 	private:
+		void InternalMove() noexcept; // Update Renderer when transform is moved
 		void UpdateScripts() noexcept;
 		std::string _name;
 		Transform _transform;

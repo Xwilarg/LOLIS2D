@@ -57,6 +57,7 @@
     <ClCompile Include="src/AScript.cpp" />
     <ClCompile Include="src/Time.cpp" />
     <ClCompile Include="src/Input.cpp" />
+    <ClCompile Include="src/DynamicGameObject.cpp" />
     <ClInclude Include="inc/GameManager.hpp" />
     <ClInclude Include="inc/Scene.hpp" />
     <ClInclude Include="inc/GameObject.hpp" />
@@ -66,6 +67,7 @@
     <ClInclude Include="inc/AScript.hpp" />
     <ClInclude Include="inc/Time.hpp" />
     <ClInclude Include="inc/Input.hpp" />
+    <ClInclude Include="inc/DynamicGameObject.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

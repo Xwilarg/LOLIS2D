@@ -26,8 +26,12 @@ namespace LOLIS2D
 
 	void GameManager::LoadScene(const std::string &name) noexcept
 	{
-		_currScene = &*std::find_if(_scenes.begin(), _scenes.end(),
+		Scene *s = &*std::find_if(_scenes.begin(), _scenes.end(),
 			[&name](const Scene &scene) { return (scene.CompareName(name)); });
+		bool isSameScene = s == _currScene;
+		_currScene = s;
+		if (!isSameScene)
+			_currScene->Start();
 	}
 
 	void GameManager::Start()
@@ -35,6 +39,7 @@ namespace LOLIS2D
 		if (_currScene == nullptr)
 			throw std::logic_error("No scene was loaded");
 		_refDelta = std::chrono::high_resolution_clock::now();
+		_currScene->Start();
 		while (_window.isOpen())
 		{
 			sf::Event event;

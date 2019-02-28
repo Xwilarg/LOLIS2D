@@ -8,24 +8,43 @@ namespace LOLIS2D
 		: _name(std::move(name))
 	{ }
 
+	void Scene::Start()
+	{
+		AddVectors(_toAdd, _allGameObjects);
+		AddVectors(_toAddDynamic, _allDynamicGameObjects);
+		for (GameObject &go : _allGameObjects)
+			go.Start();
+		for (DynamicGameObject &go : _allDynamicGameObjects)
+			go.Start();
+		RemoveVectors(_toRemove, _allGameObjects);
+		RemoveVectors(_toRemoveDynamic, _allDynamicGameObjects);
+	}
+
 	void Scene::Update(sf::RenderWindow &win)
 	{
-		if (!_toAdd.empty())
-		{
-			_allGameObjects.reserve(_allGameObjects.size() + _toAdd.size());
-			std::move(_toAdd.begin(), _toAdd.end(), std::back_inserter(_allGameObjects));
-			_toAdd.clear();
-		}
+		AddVectors(_toAdd, _allGameObjects);
+		AddVectors(_toAddDynamic, _allDynamicGameObjects);
 		for (GameObject &go : _allGameObjects)
 			go.Update(win);
-		for (GameObject &go : _toRemove)
-			_allGameObjects.erase(std::find(_allGameObjects.begin(), _allGameObjects.end(), go));
-		_toRemove.clear();
+		for (DynamicGameObject &go : _allDynamicGameObjects)
+			go.Update(win);
+		RemoveVectors(_toRemove, _allGameObjects);
+		RemoveVectors(_toRemoveDynamic, _allDynamicGameObjects);
 	}
 
 	bool Scene::CompareName(const std::string &name) const noexcept
 	{
 		return (name == _name);
+	}
+
+	void Scene::AddGameObject(DynamicGameObject &&go) noexcept
+	{
+		_toAddDynamic.push_back(std::move(go));
+	}
+
+	void Scene::RemoveGameObject(DynamicGameObject &&go) noexcept
+	{
+		_toRemoveDynamic.push_back(std::move(go));
 	}
 
 	void Scene::AddGameObject(GameObject &&go) noexcept

@@ -19,6 +19,7 @@ namespace LOLIS2D
 		GameObject &operator=(const GameObject &go) noexcept;
 		GameObject &operator=(GameObject &&go) noexcept;
 		[[nodiscard]] bool operator==(const GameObject &go) const noexcept;
+		void Start();
 		virtual void Update(sf::RenderWindow &win);
 		void Move(sf::Vector2f &&pos) noexcept;
 		void Move(const sf::Vector2f &pos) noexcept;
@@ -36,6 +37,7 @@ namespace LOLIS2D
 		}
 
 	private:
+		void PreAction() noexcept; // To call before Start and Update
 		void InternalMove() noexcept; // Update Renderer when transform is moved
 		void UpdateScripts() noexcept;
 		std::string _name;

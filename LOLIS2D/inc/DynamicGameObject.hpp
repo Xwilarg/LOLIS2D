@@ -10,6 +10,7 @@ namespace LOLIS2D
 		DynamicGameObject(std::string &&name, Transform &&transform = Transform()) noexcept;
 		void Update(sf::RenderWindow &win) override;
 		void AddForce(const sf::Vector2f &force) noexcept;
+		void SetVelocity(sf::Vector2f &&vel) noexcept;
 
 	private:
 		float _linearDrag;

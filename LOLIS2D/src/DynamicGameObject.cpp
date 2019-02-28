@@ -18,4 +18,9 @@ namespace LOLIS2D
 	{
 		_velocity += force;
 	}
+
+	void DynamicGameObject::SetVelocity(sf::Vector2f &&vel) noexcept
+	{
+		_velocity = std::move(vel);
+	}
 }

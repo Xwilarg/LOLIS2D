@@ -61,14 +61,16 @@ namespace LOLIS2D
 		return (_id == go._id);
 	}
 
+	void GameObject::Start()
+	{
+		PreAction();
+		for (std::unique_ptr<AScript> &script : _scripts)
+			script->Start();
+	}
+
 	void GameObject::Update(sf::RenderWindow &win)
 	{
-		if (!_toAdd.empty())
-		{
-			_scripts.reserve(_scripts.size() + _toAdd.size());
-			std::move(_toAdd.begin(), _toAdd.end(), std::back_inserter(_scripts));
-			_toAdd.clear();
-		}
+		PreAction();
 		for (std::unique_ptr<AScript> &script : _scripts)
 			script->Update();
 		if (_renderer != nullptr)
@@ -90,6 +92,16 @@ namespace LOLIS2D
 	DynamicGameObject *GameObject::CastToDynamic() noexcept
 	{
 		return (dynamic_cast<DynamicGameObject *>(this));
+	}
+
+	void GameObject::PreAction() noexcept
+	{
+		if (!_toAdd.empty())
+		{
+			_scripts.reserve(_scripts.size() + _toAdd.size());
+			std::move(_toAdd.begin(), _toAdd.end(), std::back_inserter(_scripts));
+			_toAdd.clear();
+		}
 	}
 
 	void GameObject::InternalMove() noexcept

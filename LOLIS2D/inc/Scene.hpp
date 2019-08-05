@@ -18,6 +18,18 @@ namespace LOLIS2D
 		void AddGameObject(GameObject &&go) noexcept;
 		void RemoveGameObject(GameObject &&go) noexcept;
 
+		template <class T>
+		bool AnyGameObject(T &&fct) const noexcept
+		{
+			for (auto &go : _allGameObjects)
+				if (fct(go))
+					return true;
+			for (auto &go : _allDynamicGameObjects)
+				if (fct(go))
+					return true;
+			return false;
+		}
+
 	private:
 		template<class T>
 		void AddVectors(std::vector<T> &toAdd, std::vector<T> &allGameObjects) noexcept

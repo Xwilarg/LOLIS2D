@@ -25,9 +25,9 @@ namespace LOLIS2D
 		AddVectors(_toAdd, _allGameObjects);
 		AddVectors(_toAddDynamic, _allDynamicGameObjects);
 		for (GameObject &go : _allGameObjects)
-			go.Update(win);
+			go.Update(*this, win);
 		for (DynamicGameObject &go : _allDynamicGameObjects)
-			go.Update(win);
+			go.Update(*this, win);
 		RemoveVectors(_toRemove, _allGameObjects);
 		RemoveVectors(_toRemoveDynamic, _allDynamicGameObjects);
 	}

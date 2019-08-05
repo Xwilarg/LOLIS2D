@@ -8,6 +8,7 @@ namespace LOLIS2D
 {
 	class AScript;
 	class DynamicGameObject;
+	class Scene;
 
 	class GameObject
 	{
@@ -20,7 +21,7 @@ namespace LOLIS2D
 		GameObject &operator=(GameObject &&go) noexcept;
 		[[nodiscard]] bool operator==(const GameObject &go) const noexcept;
 		void Start();
-		virtual void Update(sf::RenderWindow &win);
+		virtual void Update(const Scene &scene, sf::RenderWindow &win);
 		void Move(sf::Vector2f &&pos) noexcept;
 		void Move(const sf::Vector2f &pos) noexcept;
 		DynamicGameObject *CastToDynamic() noexcept;

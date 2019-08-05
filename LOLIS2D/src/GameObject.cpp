@@ -68,7 +68,7 @@ namespace LOLIS2D
 			script->Start();
 	}
 
-	void GameObject::Update(sf::RenderWindow &win)
+	void GameObject::Update(const Scene &scene, sf::RenderWindow &win)
 	{
 		PreAction();
 		for (std::unique_ptr<AScript> &script : _scripts)

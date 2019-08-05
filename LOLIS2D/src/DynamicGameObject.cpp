@@ -1,5 +1,5 @@
 #include "AScript.hpp"
-#include "DynamicGameObject.hpp"
+#include "Scene.hpp"
 
 namespace LOLIS2D
 {
@@ -7,10 +7,13 @@ namespace LOLIS2D
 		: GameObject(std::move(name), std::move(transform)), _linearDrag(1.1f), _velocity(sf::Vector2f(0.f, 0.f))
 	{ }
 
-	void DynamicGameObject::Update(sf::RenderWindow &win)
+	void DynamicGameObject::Update(const Scene &scene, sf::RenderWindow &win)
 	{
-		GameObject::Update(win);
-		Move(_velocity);
+		GameObject::Update(scene, win);
+		if (!DoesCollide(scene, _velocity))
+		{
+			Move(_velocity);
+		}
 		_velocity /= _linearDrag;
 	}
 
@@ -22,5 +25,10 @@ namespace LOLIS2D
 	void DynamicGameObject::SetVelocity(sf::Vector2f &&vel) noexcept
 	{
 		_velocity = std::move(vel);
+	}
+
+	bool DynamicGameObject::DoesCollide(const Scene &scene, sf::Vector2f vectorAdd) const noexcept
+	{
+		return scene.AnyGameObject([](const GameObject &go) { return false; });
 	}
 }

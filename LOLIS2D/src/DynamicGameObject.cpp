@@ -29,6 +29,11 @@ namespace LOLIS2D
 
 	bool DynamicGameObject::DoesCollide(const Scene &scene, sf::Vector2f vectorAdd) const noexcept
 	{
-		return scene.AnyGameObject([](const GameObject &go) { return false; });
+		//return scene.AnyGameObject([](const GameObject &go) { return false; });
+	}
+
+	void DynamicGameObject::SetLinearDrag(float value) noexcept
+	{
+		_linearDrag = value;
 	}
 }

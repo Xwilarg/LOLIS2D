@@ -3,6 +3,7 @@
 # include <string>
 # include "Transform.hpp"
 # include "IRenderer.hpp"
+# include "ICollider.hpp"
 
 namespace LOLIS2D
 {
@@ -31,6 +32,11 @@ namespace LOLIS2D
 			_renderer = std::make_unique<T>(std::forward<Args>(params)...);
 			_renderer->SetPosition(_transform.GetPosition());
 		}
+		template<class T, typename... Args>
+		void AddCollider(Args&&... params) noexcept
+		{
+			_collider = std::make_unique<T>(std::forward<Args>(*this, params)...);
+		}
 		template<class T>
 		void AddScript() noexcept
 		{
@@ -44,6 +50,7 @@ namespace LOLIS2D
 		std::string _name;
 		Transform _transform;
 		std::unique_ptr<IRenderer> _renderer;
+		std::unique_ptr<ICollider> _collider;
 		std::vector<std::unique_ptr<AScript>> _scripts;
 		std::vector<std::unique_ptr<AScript>> _toAdd;
 		int _id;

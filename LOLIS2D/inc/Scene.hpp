@@ -18,19 +18,9 @@ namespace LOLIS2D
 		void AddGameObject(GameObject &&go) noexcept;
 		void RemoveGameObject(GameObject &&go) noexcept;
 
-		template <class T>
-		bool AnyGameObject(T &&fct) const noexcept
-		{
-			for (auto &go : _allGameObjects)
-				if (fct(go))
-					return true;
-			for (auto &go : _allDynamicGameObjects)
-				if (fct(go))
-					return true;
-			return false;
-		}
-
 	private:
+		// Add / Remove all game object in a list
+		// It's templated because it can be applied on GameObject and DynamicGameObject
 		template<class T>
 		void AddVectors(std::vector<T> &toAdd, std::vector<T> &allGameObjects) noexcept
 		{
@@ -49,7 +39,10 @@ namespace LOLIS2D
 			toRemove.clear();
 		}
 		std::vector<GameObject> _allGameObjects;
-		std::vector<GameObject> _toAdd; // Objects to add are stored here before being added at the start of the Update loop
+		// Objects to add are stored here before being added at the start of the Update loop
+		// It's made that way to make sure we don't modify _allGameObjects while the program is interating on it
+		// TODO: Maybe I can just improve the performances by iterating from list.length to 0, so I can add things without any problem
+		std::vector<GameObject> _toAdd;
 		std::vector<GameObject> _toRemove;
 		// Dynamic GameObjects are stored separatly so I don't have handle polymorphism
 		// (unique_ptr need me to redefine copy/mov ctor/equal-op and it's annoying)

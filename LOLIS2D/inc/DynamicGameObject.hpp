@@ -13,6 +13,7 @@ namespace LOLIS2D
 		void Update(const Scene &scene, sf::RenderWindow &win) override;
 		void AddForce(const sf::Vector2f &force) noexcept;
 		void SetVelocity(sf::Vector2f &&vel) noexcept;
+		void SetLinearDrag(float value) noexcept;
 
 	private:
 		// Does the new position of a game object collide with anything on the scene
